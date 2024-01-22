@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your TOPSIS Web App</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        margin: 0;
+        padding: 5%;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      form {
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+      }
+      ::placeholder {
+        text-align: center;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      input[type="file"] {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TOPSIS Web App</h1>
+    <form method="post" action="/" enctype="multipart/form-data">
+      <label for="Input_File">Input File:</label>
+      <input
+        type="file"
+        name="Input_File"
+        accept=".csv, .xlsx"
+        required
+      /><br />
+
+      <label for="Weights">Weights:</label>
+      <input type="text" name="Weights" required placeholder="1,1,1,1 " /><br />
+
+      <label for="Impacts">Impacts:</label>
+      <input type="text" name="Impacts" required placeholder="+,-,+,- " /><br />
+
+      <label for="Email">Email:</label>
+      <input
+        type="email"
+        name="Email"
+        required
+        placeholder="xyz@abc.com"
+      /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("your-form-id");
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        // Use Fetch API or any other method to send the form data to the server
+        const formData = new FormData(form);
+        const response = await fetch("/", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (result.status === "success") {
+          alert(result.message);
+        } else {
+          alert(result.message);
+        }
+      });
+    });
+  </script>
+</html>

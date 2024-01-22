@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your TOPSIS Web App - Result</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f0f0;
+        margin: 20px;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .message {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #4caf50;
+        color: #fff;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      tr.rank-1 {
+        background-color: #ffd700; /* Highlight rank 1 with gold color */
+      }
+
+      .back-btn {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="message">
+      <p>Email with the file has been sent!</p>
+    </div>
+
+    <h1>TOPSIS Result</h1>
+    {{ table|safe }}
+
+    <a href="/" class="back-btn">Go Back</a>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var rows = document.querySelectorAll("table tr");
+
+        rows.forEach(function (row) {
+          var lastCell = row.cells[row.cells.length - 1];
+          if (lastCell.innerText.trim() === "1") {
+            row.classList.add("rank-1");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
